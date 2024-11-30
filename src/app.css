@@ -47,11 +47,27 @@
 		--ring: 35.5 91.7% 32.9%;
 	}
 
+	@font-face {
+		font-family: 'Open Sans';
+		src: url('/fonts/open-sans/OpenSans-VariableFont_wdth,wght.ttf')
+			format('ttf');
+		font-weight: 100 900;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Open Sans';
+		src: url('/fonts/open-sans/OpenSans-Italic-VariableFont_wdth,wght.ttf')
+			format('ttf');
+		font-weight: 100 900;
+		font-style: italic;
+	}
+
 	* {
 		@apply border-border;
 	}
 
 	body {
-		@apply bg-background text-foreground;
+		@apply font-open-sans bg-background text-foreground;
 	}
 }
