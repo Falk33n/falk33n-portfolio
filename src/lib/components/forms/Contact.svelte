@@ -18,7 +18,12 @@
 		Input,
 		TextArea,
 	} from '$components';
-	import { CONTACT_FIELDS, CONTACT_SCHEMA, type ContactSchema } from '$utils';
+	import {
+		cn,
+		CONTACT_FIELDS,
+		CONTACT_SCHEMA,
+		type ContactSchema,
+	} from '$utils';
 	import { toast } from 'svelte-sonner';
 	import {
 		type Infer,
@@ -38,9 +43,7 @@
 				form.reset();
 				toast.success('Successfully sent email!');
 				return;
-			}
-
-			if (retries >= 3) {
+			} else if (retries >= 3) {
 				toast.error(
 					'You have reached the maximum number of retries. Please try again later.',
 				);
@@ -69,7 +72,10 @@
 			<FormField
 				{form}
 				name={field.name}
-				class="md:w-[calc(50%-2rem)] md:max-w-[600px]"
+				class={cn(
+					'w-full',
+					field.name !== 'msg' && 'md:w-[calc(50%-2rem)] md:max-w-[600px]',
+				)}
 			>
 				<FormControl>
 					{#snippet children({ props })}
