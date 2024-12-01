@@ -1,4 +1,5 @@
 import { SECRET_GMAIL_EMAIL, SECRET_GMAIL_PSW } from '$env/static/private';
+import { CONTACT_SCHEMA, type ContactSchema } from '$utils';
 import { error, json, type RequestHandler } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
 import { z } from 'zod';
@@ -13,33 +14,10 @@ const transporter = nodemailer.createTransport({
 	},
 });
 
-transporter.verify((err) => {
-	if (err) {
-		return json({ message: err }, { status: 500 });
-	}
-	return json({ message: 'Server is ready to take messages' }, { status: 200 });
-});
-
-const SCHEMA = z.object({
-	fName: z.string({ message: 'First name is required.' }),
-	lName: z.string({ message: 'Last name is required.' }),
-	email: z
-		.string({ message: 'Email is required.' })
-		.email({ message: 'You need to enter a valid email.' }),
-	subject: z.string({ message: 'Subject is required.' }),
-	msg: z.string({ message: 'Message is required.' }),
-});
-
 export const POST: RequestHandler = async ({ request }) => {
-	const input: {
-		fName: string;
-		lName: string;
-		email: string;
-		subject: string;
-		msg: string;
-	} = await request.json();
+	const input: z.infer<ContactSchema> = await request.json();
 
-	const result = SCHEMA.safeParse(input);
+	const result = CONTACT_SCHEMA.safeParse(input);
 	if (!result.success) {
 		return error(400, { message: result.error.message });
 	}
@@ -50,8 +28,12 @@ export const POST: RequestHandler = async ({ request }) => {
 		to: SECRET_GMAIL_EMAIL,
 		subject: `PORTFOLIO: ${subject}`,
 		text: msg,
-		// First and last name, email, subject, and the message with newlines in between
-		html: `<p>${fName} ${lName}</p>\n<p>${email}</p>\n<h1>${subject}</h1>\n<p>${msg}</p>`,
+		html: `
+      <p>${fName} ${lName}</p>
+      <p>${email}</p>
+      <h1>${subject}</h1>
+      <p>${msg}</p>
+    `,
 	};
 
 	await transporter.sendMail(emailMsg);
