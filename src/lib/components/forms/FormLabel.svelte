@@ -18,7 +18,10 @@
 	{#snippet child({ props })}
 		<Label
 			{...props}
-			class={cn('data-[fs-error]:text-destructive', className)}
+			class={cn(
+				'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 data-[fs-error]:text-destructive',
+				className,
+			)}
 		>
 			{@render children?.()}
 		</Label>
