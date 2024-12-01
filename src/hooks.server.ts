@@ -1,3 +1,4 @@
+import { NODE_ENV } from '$env/static/private';
 import { error, type Handle } from '@sveltejs/kit';
 import { RetryAfterRateLimiter } from 'sveltekit-rate-limiter/server';
 
@@ -7,6 +8,10 @@ const limiter = new RetryAfterRateLimiter({
 });
 
 export const handle: Handle = async ({ event, resolve }) => {
+	if (NODE_ENV === 'development') {
+		return await resolve(event);
+	}
+
 	const status = await limiter.check(event);
 	if (status.limited) {
 		throw error(
