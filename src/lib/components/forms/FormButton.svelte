@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, type ButtonProps } from '$components/forms';
+	import { Button, type ButtonProps } from '$components';
 
 	let { ref = $bindable(null), ...restProps }: ButtonProps = $props();
 </script>

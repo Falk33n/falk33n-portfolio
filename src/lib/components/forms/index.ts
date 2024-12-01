@@ -1,4 +1,5 @@
 import Button from './Button.svelte';
+import ContactForm from './ContactForm.svelte';
 import FormButton from './FormButton.svelte';
 import FormDescription from './FormDescription.svelte';
 import FormElementField from './FormElementField.svelte';
@@ -19,6 +20,7 @@ export {
 } from './Button.svelte';
 export {
 	Button,
+	ContactForm,
 	FormButton,
 	FormDescription,
 	FormElementField,

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import {
+		Button,
 		Tooltip,
 		TooltipContent,
 		TooltipProvider,
 		TooltipTrigger,
-	} from '$components/feedback';
-	import { Button } from '$components/forms';
+	} from '$components';
 	import { Moon, Sun } from 'lucide-svelte/icons';
 	import { mode, toggleMode } from 'mode-watcher';
 

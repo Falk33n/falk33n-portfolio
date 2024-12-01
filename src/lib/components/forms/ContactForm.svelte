@@ -14,9 +14,9 @@
 		FormField,
 		FormFieldErrors,
 		FormLabel,
+		H2,
 		Input,
-	} from '$components/forms';
-	import { H2 } from '$components/typography';
+	} from '$components';
 	import { CONTACT_FIELDS, CONTACT_SCHEMA, type ContactSchema } from '$utils';
 	import { toast } from 'svelte-sonner';
 	import {

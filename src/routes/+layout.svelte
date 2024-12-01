@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { Toaster } from '$components/feedback';
-	import { ModeToggle } from '$components/themes';
+	import { ContactForm, ModeToggle, Toaster } from '$components';
 	import '$src/app.css';
-	import { ContactForm } from '$src/routes/_components';
 	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();
