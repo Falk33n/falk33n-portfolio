@@ -31,6 +31,8 @@
 
 	const form = superForm(data, {
 		onResult: ({ result }) => {
+			retries += 1;
+
 			if (result.type === 'success') {
 				form.reset();
 				toast.success('Successfully sent email!');
@@ -43,11 +45,7 @@
 				);
 				form.reset();
 				setTimeout(() => (retries = 0), 300000); // 5 minutes
-				return;
 			}
-
-			retries += 1;
-			toast.error('Failed to send email.');
 		},
 		validators: zodClient(CONTACT_SCHEMA),
 	});
