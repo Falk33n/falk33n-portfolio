@@ -16,6 +16,7 @@
 		FormLabel,
 		H2,
 		Input,
+		TextArea,
 	} from '$components';
 	import { CONTACT_FIELDS, CONTACT_SCHEMA, type ContactSchema } from '$utils';
 	import { toast } from 'svelte-sonner';
@@ -44,8 +45,11 @@
 					'You have reached the maximum number of retries. Please try again later.',
 				);
 				form.reset();
-				setTimeout(() => (retries = 0), 300000); // 5 minutes
+				setTimeout(() => (retries = 0), 120000); // 2 minutes
+				return;
 			}
+
+			toast.error('Something went wrong. Please try again.');
 		},
 		validators: zodClient(CONTACT_SCHEMA),
 	});
@@ -58,7 +62,7 @@
 	<form
 		use:enhance
 		method="POST"
-		action="?/sdsaend-email"
+		action="?/send-email"
 		class="flex w-full flex-col gap-4 md:flex-row md:flex-wrap md:justify-between md:gap-x-12"
 	>
 		{#each CONTACT_FIELDS as field}
@@ -71,12 +75,19 @@
 					{#snippet children({ props })}
 						<FormLabel>{field.label}</FormLabel>
 
-						<Input
-							{...props}
-							autocomplete={field.autocomplete ?? 'off'}
-							type={field.type ?? 'text'}
-							bind:value={$formData[field.name]}
-						/>
+						{#if field.name === 'msg'}
+							<TextArea
+								{...props}
+								bind:value={$formData[field.name]}
+							/>
+						{:else}
+							<Input
+								{...props}
+								autocomplete={field.autocomplete ?? 'off'}
+								type={field.type ?? 'text'}
+								bind:value={$formData[field.name]}
+							/>
+						{/if}
 					{/snippet}
 				</FormControl>
 

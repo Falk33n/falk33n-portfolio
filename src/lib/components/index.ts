@@ -19,10 +19,13 @@ export {
 	FormLegend,
 	Input,
 	Label,
+	TextArea,
 	buttonVariants,
 	type ButtonProps,
 	type ButtonSize,
 	type ButtonVariant,
+	type FormTextAreaEvent,
+	type TextareaEvents,
 } from './forms';
 export { ModeToggle } from './themes';
 export { H1, H2, H3, H4, P, type TypographyProps } from './typography';
