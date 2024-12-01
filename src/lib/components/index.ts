@@ -7,7 +7,6 @@ export {
 } from './feedback';
 export {
 	Button,
-	ContactForm,
 	FormButton,
 	FormControl,
 	FormDescription,
@@ -27,5 +26,6 @@ export {
 	type FormTextAreaEvent,
 	type TextareaEvents,
 } from './forms';
+export { Contact } from './sections';
 export { ModeToggle } from './themes';
 export { H1, H2, H3, H4, P, type TypographyProps } from './typography';

@@ -64,6 +64,7 @@
 
 	<form
 		use:enhance
+		aria-label="Contact form"
 		method="POST"
 		action="?/send-email"
 		class="flex w-full flex-col gap-4 md:flex-row md:flex-wrap md:justify-between md:gap-x-12"
@@ -103,6 +104,7 @@
 
 		<div class="md:[flex-basis:100%]">
 			<FormButton
+				aria-label="Send email with the given details"
 				disabled={$allErrors.length > 0 || retries >= 3}
 				class="max-md:w-full">Submit</FormButton
 			>

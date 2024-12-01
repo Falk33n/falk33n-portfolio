@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ContactForm, ModeToggle, Toaster } from '$components';
+	import { Contact, ModeToggle, Toaster } from '$components';
 	import '$src/app.css';
 	import { ModeWatcher } from 'mode-watcher';
 
@@ -20,6 +20,6 @@
 
 		{@render children()}
 
-		<ContactForm />
+		<Contact />
 	</main>
 </div>
