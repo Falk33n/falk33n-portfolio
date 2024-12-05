@@ -27,7 +27,7 @@
 				default: 'h-10 px-4 py-2',
 				sm: 'h-9 rounded-md px-3',
 				lg: 'h-11 rounded-md px-8',
-				icon: 'h-10 w-10',
+				icon: 'h-10 w-10 rounded-full',
 			},
 		},
 		defaultVariants: {
@@ -54,6 +54,8 @@
 		size = 'default',
 		ref = $bindable(null),
 		href = undefined,
+		rel = undefined,
+		target = '_self',
 		type = 'button',
 		children,
 		...restProps
@@ -64,6 +66,8 @@
 	<a
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size, className }))}
+		rel={target === '_blank' ? 'noreferrer noopener' : rel}
+		{target}
 		{href}
 		{...restProps}
 	>
