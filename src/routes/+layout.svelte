@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Contact, ModeToggle, Toaster } from '$components';
+	import { Footer, ModeToggle, Navbar, Toaster } from '$components';
 	import '$src/app.css';
 	import { ModeWatcher } from 'mode-watcher';
 
@@ -11,6 +11,7 @@
 >
 	<ModeWatcher />
 	<Toaster />
+	<Navbar />
 
 	<main
 		id="content"
@@ -19,7 +20,7 @@
 		<ModeToggle />
 
 		{@render children()}
-
-		<Contact />
 	</main>
+
+	<Footer />
 </div>
