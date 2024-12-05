@@ -17,6 +17,7 @@ const config = ts.config(
 				...globals.node,
 			},
 		},
+		ignores: ['build', '.svelte-kit', 'dist', 'node_modules'],
 	},
 	{
 		files: ['**/*.svelte'],
